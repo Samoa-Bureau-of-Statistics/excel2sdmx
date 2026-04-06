@@ -1,0 +1,20 @@
+Package: fbosSDMX
+Type: Package
+Title: SDMX Converter Dashboard
+Version: 0.1.0
+Authors@R: 
+    person("Tuvui", "Soro", email = "first.last@example.com", role = c("aut","cre"))
+Description: A ShinyDashboard application to convert BOP, CPI, National Accounts, Poverty, and Visitor Excel files into SDMX CSV format.
+Depends: 
+    R (>= 4.0),
+    shiny,
+    shinydashboard,
+    readxl,
+    dplyr,
+    tidyr,
+    stringr,
+    data.table,
+    zip
+License: MIT
+Encoding: UTF-8
+LazyData: true
