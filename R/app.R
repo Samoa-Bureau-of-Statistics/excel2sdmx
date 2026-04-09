@@ -455,6 +455,9 @@ run_sbsSDMX <- function() {
                        values_to = "OBS_VALUE")
 
         table_long <- add_transformations(table_long)
+        table_long <- table_long |>
+          select(DATAFLOW, FREQ, INDICATOR_TYPE, INDICATOR, ITEM, TRANSFORMATION, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, OBS_STATUS, COMMENT, DECIMALS) |>
+          mutate(across(everything(), ~ ifelse(is.na(.), "", .)))
 
         file_name <- file.path(temp_dir, paste0(sheet, ".csv"))
         write.csv(table_long, file_name, row.names = FALSE)
@@ -518,7 +521,9 @@ run_sbsSDMX <- function() {
         table_long <- table |>
           pivot_longer(cols = -c(DATAFLOW:REPYEARSTART),
                        names_to = "TIME_PERIOD",
-                       values_to = "OBS_VALUE")
+                       values_to = "OBS_VALUE") |>
+          select(DATAFLOW, FREQ, REF_AREA, REF_PERIOD_DETAIL, INDICATOR, INDUSTRY, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, REPYEARSTART, OBS_STATUS, COMMENT, DECIMALS) |>
+          mutate(across(everything(), ~ ifelse(is.na(.), "", .)))
 
         file_name <- file.path(temp_dir, paste0(sheet, ".csv"))
         write.csv(table_long, file_name, row.names = FALSE)
@@ -581,7 +586,9 @@ run_sbsSDMX <- function() {
         table_long <- table |>
           pivot_longer(cols = -c(DATAFLOW:DECIMALS),
                        names_to = "TIME_PERIOD",
-                       values_to = "OBS_VALUE")
+                       values_to = "OBS_VALUE") |>
+          select(DATAFLOW, FREQ, REF_AREA, INDICATOR, SEX, INDUSTRY, TRANSFORMATION, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, OBS_STATUS, COMMENT, DECIMALS) |>
+          mutate(across(everything(), ~ ifelse(is.na(.), "", .)))
 
         file_name <- file.path(temp_dir, paste0(sheet, ".csv"))
         write.csv(table_long, file_name, row.names = FALSE)
@@ -648,7 +655,8 @@ run_sbsSDMX <- function() {
             names_to = "TIME_PERIOD",
             values_to = "OBS_VALUE"
           ) |>
-          select(DATAFLOW, FREQ, REF_AREA, STO, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, OBS_STATUS, COMMENT, REPYEARSTART, DECIMALS)
+          select(DATAFLOW, FREQ, REF_AREA, STO, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, OBS_STATUS, COMMENT, REPYEARSTART, DECIMALS) |>
+          mutate(across(everything(), ~ ifelse(is.na(.), "", .)))
 
         file_name <- file.path(temp_dir, paste0(sheet, ".csv"))
         write.csv(table_long, file_name, row.names = FALSE)
