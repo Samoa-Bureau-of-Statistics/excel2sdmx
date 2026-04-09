@@ -642,12 +642,14 @@ run_sbsSDMX <- function() {
 
         gfs_log(paste(gfs_log(), paste("Processing sheet:", sheet), sep = "\n"))
 
-        table_long <- table %>%
+        table_long <- table |>
           pivot_longer(
             cols = -c(DATAFLOW:DECIMALS),
             names_to = "TIME_PERIOD",
             values_to = "OBS_VALUE"
-          )
+          ) |>
+          select(DATAFLOW, FREQ, REF_AREA, STO, TIME_PERIODU, OBS_VALUE, NIT_MEASURE, UNIT_MULT, OBS_STATUS, COMMENT, REPYEARSTART, DECIMALS)
+
 
         file_name <- file.path(temp_dir, paste0(sheet, ".csv"))
         write.csv(table_long, file_name, row.names = FALSE)
