@@ -648,8 +648,7 @@ run_sbsSDMX <- function() {
             names_to = "TIME_PERIOD",
             values_to = "OBS_VALUE"
           ) |>
-          select(DATAFLOW, FREQ, REF_AREA, STO, TIME_PERIODU, OBS_VALUE, NIT_MEASURE, UNIT_MULT, OBS_STATUS, COMMENT, REPYEARSTART, DECIMALS)
-
+          select(DATAFLOW, FREQ, REF_AREA, STO, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, OBS_STATUS, COMMENT, REPYEARSTART, DECIMALS)
 
         file_name <- file.path(temp_dir, paste0(sheet, ".csv"))
         write.csv(table_long, file_name, row.names = FALSE)
