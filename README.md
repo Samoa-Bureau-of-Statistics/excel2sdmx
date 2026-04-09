@@ -17,7 +17,7 @@ remotes::install_github("https://github.com/Samoa-Bureau-of-Statistics/excel2sdm
 remotes::install_github("https://github.com/Samoa-Bureau-of-Statistics/excel2sdmx", force = TRUE)
 
 # **************** How to run the imtshiny app from R console ******************** #
-library(excel2sdmx) # Load the sdd_excel2sdmx package
-excel2sdmx::run_sbsSDMX() # Execute the sdd_excel2sdmx package 
+library(sbsSDMX) # Load the sdd_excel2sdmx package
+sbsSDMX::run_sbsSDMX() # Execute the sdd_excel2sdmx package 
 
 ```
