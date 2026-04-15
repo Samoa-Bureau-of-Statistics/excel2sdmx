@@ -9,6 +9,8 @@ You can install and execute the sdd_excel2sdmx package as per the following step
 
 ``` r
 # **************** How to install the package from R console ******************** #
+# Before installing the package, we need to restart the R session
+.rs.restartR()
 
 install.packages("remotes") # Ensure remotes package is installed before proceeding
 library(remotes) # load the remotes package
