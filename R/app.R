@@ -522,7 +522,7 @@ run_sbsSDMX <- function() {
           pivot_longer(cols = -c(DATAFLOW:REPYEARSTART),
                        names_to = "TIME_PERIOD",
                        values_to = "OBS_VALUE") |>
-          select(DATAFLOW, FREQ, REF_AREA, REF_PERIOD_DETAIL, INDICATOR, INDUSTRY, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, REPYEARSTART, OBS_STATUS, COMMENT, DECIMALS) |>
+          select(DATAFLOW, FREQ, REF_PERIOD_DETAIL, REF_AREA, INDICATOR, INDUSTRY, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, OBS_STATUS, COMMENT, DECIMALS, REPYEARSTART) |>
           mutate(across(everything(), ~ ifelse(is.na(.), "", .)))
 
         table_long$FREQ <- ifelse(grepl("Q", table_long$TIME_PERIOD), "Q", table_long$FREQ)
