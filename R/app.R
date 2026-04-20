@@ -456,7 +456,7 @@ run_sbsSDMX <- function() {
 
         table_long <- add_transformations(table_long)
         table_long <- table_long |>
-          select(DATAFLOW, FREQ, INDICATOR_TYPE, INDICATOR, ITEM, TRANSFORMATION, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, OBS_STATUS, COMMENT, DECIMALS) |>
+          select(DATAFLOW, FREQ, REF_AREA, INDICATOR_TYPE, INDICATOR, ITEM, TRANSFORMATION, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, OBS_STATUS, COMMENT, DECIMALS) |>
           mutate(across(everything(), ~ ifelse(is.na(.), "", .)))
 
         file_name <- file.path(temp_dir, paste0(sheet, ".csv"))
