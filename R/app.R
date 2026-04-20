@@ -525,7 +525,7 @@ run_sbsSDMX <- function() {
           select(DATAFLOW, FREQ, REF_AREA, REF_PERIOD_DETAIL, INDICATOR, INDUSTRY, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, REPYEARSTART, OBS_STATUS, COMMENT, DECIMALS) |>
           mutate(across(everything(), ~ ifelse(is.na(.), "", .)))
 
-        table_long$TIME_PERIOD <- ifelse(grepl("Q", table_long$TIME_PERIOD), "Q", table_long$FREQ)
+        table_long$FREQ <- ifelse(grepl("Q", table_long$TIME_PERIOD), "Q", table_long$FREQ)
 
         file_name <- file.path(temp_dir, paste0(sheet, ".csv"))
         write.csv(table_long, file_name, row.names = FALSE)
