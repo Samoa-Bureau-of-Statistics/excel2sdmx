@@ -523,7 +523,13 @@ run_sbsSDMX <- function() {
                        names_to = "TIME_PERIOD",
                        values_to = "OBS_VALUE") |>
           select(DATAFLOW, FREQ, REF_PERIOD_DETAIL, REF_AREA, INDICATOR, INDUSTRY, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, UNIT_MULT, BASE_PER, OBS_STATUS, COMMENT, DECIMALS, REPYEARSTART) |>
-          mutate(across(everything(), ~ ifelse(is.na(.), "", .)))
+          mutate(across(everything(), ~ ifelse(is.na(.), "", .)),
+                FREQ = case_when(
+                   grepl("Q", TIME_PERIOD) ~ "Q",
+                   grepl("-(01|02|03|04|05|06|07|08|09|10|11|12)$", TIME_PERIOD) ~ "M",
+                   TRUE ~ "A"
+                 )
+                )
 
         table_long$FREQ <- ifelse(grepl("Q", table_long$TIME_PERIOD), "Q", table_long$FREQ)
 
